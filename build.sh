@@ -1,5 +1,5 @@
 #Name: Ethan Kamus
-#email: ethanjpkamus@csu.fullerton.edu
+#email: ethanjpkamus@csu.fullerton.edu 
 
 rm *.o
 rm *.out

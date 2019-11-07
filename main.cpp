@@ -1,5 +1,5 @@
 //Author: Ethan Kamus
-//Email: ethanjpkamus@csu.fullerton.edu
+//Email: ethanjpkamus@csu.fullerton.edu 
 
 /*
  * The purpose of this assignment is to learn how to code in x86-64 assembly

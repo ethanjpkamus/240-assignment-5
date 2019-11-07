@@ -10,13 +10,13 @@ segment .data
 	showarea db "The area of the triangle is %lf",10,0
 	showhypotenuse db "The hypotenuse has a length of %lf",10,0
 	closing db "The module will now return the hypotenuse to the driver"
-	stringformat "%s"
+	stringformat db "%s"
 	twofloat db "%lf %lf",0
 
 segment .bss
 ;empty
 
-segment.text
+segment .text
 
 hypotenuse:
 
@@ -74,8 +74,8 @@ hypotenuse:
 
 	mov	rax, 2			;indicates two floats are involved
 	mov	rdi, validateinput	;"The sides are..."
-	movsd	xmm0, [xmm12]		;do this becuase printf interacts with the "lowest" xmm registers first
-	movsd	xmm1, [xmm13]
+	movsd	xmm0, xmm12		;do this becuase printf interacts with the "lowest" xmm registers first
+	movsd	xmm1, xmm13
 	call	printf
 
 ;===== do math ================================================================
@@ -91,7 +91,7 @@ hypotenuse:
 
 	mov	rax, 1
 	mov	rdi, showhypotenuse
-	movsd	xmm0, [xmm11]
+	movsd	xmm0, xmm11
 	call	printf
 
 ;===== return everything to main.cpp ==========================================
