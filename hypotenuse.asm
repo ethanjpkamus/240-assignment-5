@@ -11,7 +11,7 @@ segment .data
 	showhypotenuse db "The hypotenuse has a length of %lf",10,0
 	closing db "The module will now return the hypotenuse to the driver"
 	stringformat db "%s"
-	twofloat db "%lf %lf",0
+	twofloat db "%lf %lf"
 
 segment .bss
 ;empty
@@ -49,7 +49,7 @@ hypotenuse:
 
 	mov	qword rax, 0
 	mov	rdi, stringformat
-	mov	rsi, welcome
+	mov	rsi, inputprompt
 	call	printf
 
 ;===== receive user input =====================================================
