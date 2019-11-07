@@ -40,14 +40,14 @@ hypotenuse:
 
 ;===== welcome statements =====================================================
 
-	mov	qword rax, 0
+	mov qword rax, 0
 	mov	rdi, stringformat
 	mov	rsi, welcome
 	call	printf
 
 ;===== prompt user to input two numbers =======================================
 
-	mov	qword rax, 0
+	mov qword rax, 0
 	mov	rdi, stringformat
 	mov	rsi, inputprompt
 	call	printf
@@ -55,8 +55,8 @@ hypotenuse:
 ;===== receive user input =====================================================
 
 	push	qword 99		;places on the boundary
-	push	qword -1
-	push	qword -2
+	push	qword 0
+	push	qword 0
 	mov 	rax, 0
 	mov	rdi, twofloat
 	mov	rsi, rsp		;rsi points to the first qword on the stack
