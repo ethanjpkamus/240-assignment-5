@@ -54,7 +54,7 @@ hypotenuse:
 
 ;===== receive user input =====================================================
 
-	push	qword 99		;places on the boundary
+	;push	qword 99		;places on the boundary
 	push	qword 0
 	push	qword 0
 	mov 	rax, 0
