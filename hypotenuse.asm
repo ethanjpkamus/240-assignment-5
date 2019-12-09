@@ -4,7 +4,7 @@ extern printf
 extern scanf
 
 segment .data
-	welcome db "Welcome to the Hypotenuse calculator";,10,0
+	welcome db "Welcome to the Hypotenuse calculator",10,0
 	inputprompt db "Enter the two sides of the triangle seperated by a space. Press enter when finished",10,0
 	validateinput db "The lengths of the two sides are %lf and %lf",10,0
 	showarea db "The area of the triangle is %lf",10,0
