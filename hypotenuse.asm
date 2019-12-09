@@ -45,14 +45,14 @@ hypotenuse:
 	mov	rsi, welcome
 	call	printf
 
-;===== prompt user to input two numbers =======================================
+;===== prompt user to input two numbers ========================================
 
 	mov qword rax, 0
 	mov	rdi, stringformat
 	mov	rsi, inputprompt
 	call	printf
 
-;===== receive user input =====================================================
+;===== receive user input ======================================================
 
 	;push	qword 99		;places on the boundary
 	push	qword 0
