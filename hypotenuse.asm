@@ -40,14 +40,14 @@ hypotenuse:
 
 ;===== print welcome statements ================================================
 
-	mov qword rax, 0
+	mov	rax, 0
 	mov	rdi, stringformat
 	mov	rsi, welcome
 	call	printf
 
 ;===== prompt user to input two numbers ========================================
 
-	mov qword rax, 0
+	mov	rax, 0
 	mov	rdi, stringformat
 	mov	rsi, inputprompt
 	call	printf
@@ -66,9 +66,9 @@ hypotenuse:
 
 	movsd	xmm12, [rsp]
 	movsd	xmm13, [rsp+8]
-	pop	rax
-	pop	rax
-	pop	rax
+
+	pop	rax			;cancel out the push on line 59
+	pop	rax			;cancel out the push on line 58
 
 ;===== validate user input ====================================================
 
@@ -78,23 +78,55 @@ hypotenuse:
 	movsd	xmm1, xmm13
 	call	printf
 
-;===== do math ================================================================
+;===== do math (old) ================================================================
+
+	;mulsd	xmm12, xmm12		;a^2
+	;mulsd	xmm13, xmm13		;b^2
+
+	;addsd	xmm12, xmm13		;a^2 + b^2 / store in xmm12
+
+	;sqrtsd	xmm11, xmm12		;squareroot of a^2+b^2 / store in xmm11
+
+;===== Area of Triangle ========================================================
+
+	mov	xmm10, xmm12
+	mulsd	xmm10, xmm13		;xmm10 stores base * height
+	mov	rbx, 0x4000000000000000 ;hex value is 2 in decimal?
+	push	rbx			;push rbx to stack to use for division
+	divsd	xmm10, [rsp]		;divide base * height by 2
+	pop	rax			;cancels out the push two lines above
+
+;===== Find Hypotenuse =========================================================
 
 	mulsd	xmm12, xmm12		;a^2
 	mulsd	xmm13, xmm13		;b^2
-
 	addsd	xmm12, xmm13		;a^2 + b^2 / store in xmm12
-
 	sqrtsd	xmm11, xmm12		;squareroot of a^2+b^2 / store in xmm11
 
-;===== print out the results ==================================================
+;===== print out the area ======================================================
+
+	mov	rax, 1
+	mov	rdi, showarea
+	movsd	xmm0, xmm10
+	call	printf
+
+;===== print out the hypotenuse ================================================
 
 	mov	rax, 1
 	mov	rdi, showhypotenuse
 	movsd	xmm0, xmm11
 	call	printf
 
-;===== return everything to main.cpp ==========================================
+;===== Closing message =========================================================
+
+	mov	rax, 0
+	mov	rdi, stringformat
+	mov	rdx, closing
+	call	printf
+
+;===== return everything to main.cpp ===========================================
+
+	movsd	xmm0, xmm11
 
 	pop	r15
 	pop	r14
