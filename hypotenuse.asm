@@ -10,8 +10,8 @@ segment .data
 	showarea db "The area of the triangle is %lf",10,0
 	showhypotenuse db "The hypotenuse has a length of %lf",10,0
 	closing db "The module will now return the hypotenuse to the driver",10,0
-	stringformat db "%s"
-	twofloat db "%lf %lf"
+	stringformat db "%s",0
+	twofloat db "%lf %lf",0
 
 segment .bss
 ;empty
@@ -24,19 +24,19 @@ hypotenuse:
 	push	rbp
 	mov	rbp, rsp
 
-	push	rbx
-	push   rcx
-	push   rdx
-	push   rsi
-	push   rdi
-	push   r8
-	push   r9
-	push   r10
-	push   r11
-	push   r12
-	push   r13
-	push   r14
-	push   r15
+	;push	rbx
+	;push   rcx
+	;push   rdx
+	;push   rsi
+	;push   rdi
+	;push   r8
+	;push   r9
+	;push   r10
+	;push   r11
+	;push   r12
+	;push   r13
+	;push   r14
+	;push   r15
 
 ;===== print welcome statements ================================================
 
@@ -89,7 +89,7 @@ hypotenuse:
 
 ;===== Area of Triangle ========================================================
 
-	mov	xmm10, xmm12
+	movsd	xmm10, xmm12
 	mulsd	xmm10, xmm13		;xmm10 stores base * height
 	mov	rbx, 0x4000000000000000 ;hex value is 2 in decimal?
 	push	rbx			;push rbx to stack to use for division
@@ -119,7 +119,7 @@ hypotenuse:
 
 ;===== Closing message =========================================================
 
-	mov	rax, 0
+	mov	rax, 1
 	mov	rdi, stringformat
 	mov	rdx, closing
 	call	printf
@@ -128,19 +128,19 @@ hypotenuse:
 
 	movsd	xmm0, xmm11
 
-	pop	r15
-	pop	r14
-	pop    r13
-	pop    r12
-	pop    r11
-	pop    r10
-	pop    r9
-	pop    r8
-	pop    rdi
-	pop    rsi
-	pop    rdx
-	pop    rcx
-	pop    rbx
+	;pop	r15
+	;pop	r14
+	;pop    r13
+	;pop    r12
+	;pop    r11
+	;pop    r10
+	;pop    r9
+	;pop    r8
+	;pop    rdi
+	;pop    rsi
+	;pop    rdx
+	;pop    rcx
+	;pop    rbx
 	pop    rbp
 
 	ret

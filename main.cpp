@@ -1,5 +1,5 @@
 //Author: Ethan Kamus
-//Email: ethanjpkamus@csu.fullerton.edu 
+//Email: ethanjpkamus@csu.fullerton.edu
 
 /*
  * The purpose of this assignment is to learn how to code in x86-64 assembly
@@ -10,10 +10,10 @@
 #include <stdio.h>
 #include <iostream>
 
-extern "C" float hypotenuse();
+extern "C" double hypotenuse();
 
 int main(){
-	float pass;
+	double pass;
 	std::cout << "\nThis program was made by Ethan Kamus\n\n";
 
  	pass = hypotenuse();
